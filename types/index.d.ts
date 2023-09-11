@@ -1,4 +1,4 @@
-import { AxiosAdapter, AxiosInstance, AxiosRequestConfig } from 'axios';
+import { AxiosAdapter, AxiosInstance, AxiosRequestConfig } from "axios";
 
 type CallbackResponseSpecFunc = (
   config: AxiosRequestConfig
@@ -17,6 +17,7 @@ declare namespace MockAdapter {
     passThrough(): MockAdapter;
     abortRequest(): MockAdapter;
     abortRequestOnce(): MockAdapter;
+    connectionResetError(): MockAdapter;
     networkError(): MockAdapter;
     networkErrorOnce(): MockAdapter;
     timeout(): MockAdapter;
@@ -26,7 +27,7 @@ declare namespace MockAdapter {
 
 interface MockAdapterOptions {
   delayResponse?: number;
-  onNoMatch?: 'passthrough' | 'throwException';
+  onNoMatch?: "passthrough" | "throwException";
 }
 
 interface AsymmetricMatcher {

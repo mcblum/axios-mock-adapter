@@ -92,7 +92,16 @@ VERBS.concat("any").forEach(function (method) {
     }
 
     function replyWithDelay(delay, code, response, headers) {
-      var handler = [matcher, body, requestHeaders, code, response, headers, false, delay];
+      var handler = [
+        matcher,
+        body,
+        requestHeaders,
+        code,
+        response,
+        headers,
+        false,
+        delay,
+      ];
       addHandler(method, _this.handlers, handler);
       return _this;
     }
@@ -157,6 +166,18 @@ VERBS.concat("any").forEach(function (method) {
       networkError: function () {
         return reply(function (config) {
           var error = utils.createAxiosError("Network Error", config);
+          return Promise.reject(error);
+        });
+      },
+
+      connectionResetError: function () {
+        return reply(function (config) {
+          var error = utils.createAxiosError(
+            "Connection Reset",
+            config,
+            undefined,
+            "ECONNABORTED"
+          );
           return Promise.reject(error);
         });
       },
