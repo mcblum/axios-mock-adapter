@@ -176,7 +176,7 @@ VERBS.concat("any").forEach(function (method) {
             "Connection Reset",
             config,
             undefined,
-            "ECONNABORTED"
+            "ECONNRESET"
           );
           return Promise.reject(error);
         });
